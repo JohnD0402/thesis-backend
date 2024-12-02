@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import cors from "cors";
 
 let data = {
   temperature: "",
@@ -6,6 +7,7 @@ let data = {
 };
 
 const app = express();
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/postDeviceReadings", (request: Request, response: Response) => {
