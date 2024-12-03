@@ -19,9 +19,9 @@ app.post("/postDeviceReadings", (request: Request, response: Response) => {
   data = {
     temperature,
     humidity,
-    lightBlock: "",
-    rainValue: "",
-    lux: "",
+    lightBlock,
+    rainValue,
+    lux,
   };
   response.status(200).send("ok");
 });
