@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
+import bodyParser = require("body-parser");
 
 let data = {
   temperature: "",
@@ -15,6 +16,8 @@ let data = {
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/postDeviceReadings", (request: Request, response: Response) => {
@@ -38,6 +41,7 @@ app.get("/getDeviceReadings", (request: Request, response: Response) => {
 app.post("/control/window", (request: Request, response: Response) => {
   const { window } = request.body;
 
+  console.log(request.body);
   data = {
     ...data,
     control: {
@@ -51,7 +55,6 @@ app.post("/control/window", (request: Request, response: Response) => {
 
 app.post("/control/water_pump", (request: Request, response: Response) => {
   const { waterPump } = request.body;
-
   data = {
     ...data,
     control: {
